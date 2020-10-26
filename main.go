@@ -1,17 +1,47 @@
 package main
 
 import (
-	"os"
+	"fmt"
 
-	"github.com/gaborszakacs/bowling-golang/bowling"
+	"github.com/bitrise-io/bowling-golang/bowling"
 )
 
 func main() {
-	g := bowling.Game{Out: os.Stdout}
-	for i := 0; i < 9; i++ {
+	{
+		// simple game
+		g := bowling.Game{}
+
 		g.Roll(2)
 		g.Roll(3)
+
+		g.Roll(2)
+		g.Roll(3)
+
+		fmt.Println(g.Score()) // 10
 	}
-	g.Roll(10)
-	g.PrintRolls()
+
+	{
+		// spare
+		g := bowling.Game{}
+
+		g.Roll(8)
+		g.Roll(2)
+
+		g.Roll(5)
+		g.Roll(1)
+
+		fmt.Println(g.Score()) // 21
+	}
+
+	{
+		// strike
+		g := bowling.Game{}
+
+		g.Roll(10)
+
+		g.Roll(5)
+		g.Roll(1)
+
+		fmt.Println(g.Score()) // 22
+	}
 }

@@ -1,10 +1,9 @@
 package bowling_test
 
 import (
-	"bytes"
 	"testing"
 
-	"github.com/gaborszakacs/bowling-golang/bowling"
+	"github.com/bitrise-io/bowling-golang/bowling"
 )
 
 func TestScore(t *testing.T) {
@@ -14,57 +13,15 @@ func TestScore(t *testing.T) {
 		want    int
 	}{
 		{
-			desc: "Gutter game",
+			desc: "gutter",
 			rollAll: func(g *bowling.Game) {
-				for i := 0; i < 10; i++ {
-					g.Roll(0)
-					g.Roll(0)
-				}
+				g.Roll(0)
+				g.Roll(0)
+
+				g.Roll(0)
+				g.Roll(0)
 			},
 			want: 0,
-		},
-		{
-			desc: "Simple game",
-			rollAll: func(g *bowling.Game) {
-				for i := 0; i < 10; i++ {
-					g.Roll(1)
-					g.Roll(1)
-				}
-			},
-			want: 20,
-		},
-		{
-			desc: "Spare",
-			rollAll: func(g *bowling.Game) {
-				g.Roll(1)
-				g.Roll(1)
-
-				g.Roll(3)
-				g.Roll(7)
-
-				for i := 0; i < 8; i++ {
-					g.Roll(1)
-					g.Roll(1)
-				}
-			},
-			want: 29,
-		},
-		{
-			desc: "Strike",
-			rollAll: func(g *bowling.Game) {
-				g.Roll(1)
-				g.Roll(1)
-
-				g.Roll(10)
-
-				g.Roll(2)
-				g.Roll(1)
-				for i := 0; i < 7; i++ {
-					g.Roll(1)
-					g.Roll(1)
-				}
-			},
-			want: 32,
 		},
 	}
 
@@ -77,33 +34,5 @@ func TestScore(t *testing.T) {
 				t.Errorf("got %d, want %d", got, tc.want)
 			}
 		})
-	}
-}
-
-func TestPrintRolls(t *testing.T) {
-	buf := bytes.Buffer{}
-	g := bowling.Game{Out: &buf}
-	for i := 0; i < 9; i++ {
-		g.Roll(2)
-		g.Roll(3)
-	}
-	g.Roll(10)
-
-	g.PrintRolls()
-
-	got := buf.String()
-	want := `2 | 3
-2 | 3
-2 | 3
-2 | 3
-2 | 3
-2 | 3
-2 | 3
-2 | 3
-2 | 3
-10
-`
-	if got != want {
-		t.Errorf("got: \n%s\n\n wanted:\n%s", got, want)
 	}
 }
