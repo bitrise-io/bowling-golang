@@ -19,7 +19,6 @@ func TestScore(t *testing.T) {
 				g.Roll(0)
 
 				g.Roll(0)
-				g.Roll(0)
 			},
 			want: 0,
 		},
