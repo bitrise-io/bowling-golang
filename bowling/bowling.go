@@ -9,6 +9,6 @@ func (g *Game) Roll(n int) {
 }
 
 // Score ...
-func (g *Game) Score() (score int) {
+func (g *Game) Score() int {
 	return 0
 }

@@ -19,10 +19,11 @@ func main() {
 		g.Roll(2)
 		g.Roll(3)
 
-		// 1
+		// 3
 		g.Roll(1)
+		g.Roll(2)
 
-		fmt.Println(g.Score()) // 11
+		fmt.Println(g.Score()) // 13
 	}
 
 	{
@@ -37,10 +38,11 @@ func main() {
 		g.Roll(5)
 		g.Roll(1)
 
-		// 1
+		// 3
 		g.Roll(1)
+		g.Roll(2)
 
-		fmt.Println(g.Score()) // 22
+		fmt.Println(g.Score()) // 24
 	}
 
 	{
