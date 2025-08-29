@@ -45,8 +45,10 @@ func TestScore(t *testing.T) {
 			rollAll: func(g *bowling.Game) {
 				g.Roll(7)
 				g.Roll(3) // spare
+
 				g.Roll(4) // bonus for spare
 				g.Roll(2)
+
 				g.Roll(1)
 				g.Roll(0)
 			},
